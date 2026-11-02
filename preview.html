@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula 1 Race Intelligence | Standalone Browser Preview</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/tableau-embed.css">
+    <!-- Tableau Embedding API v3 -->
+    <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="f1-navbar">
+        <div class="container nav-container">
+            <a href="#home" class="f1-brand">
+                <span class="f1-logo-badge">F1</span>
+                <span class="f1-brand-text">RACE INTELLIGENCE</span>
+            </a>
+            <ul class="f1-nav-links">
+                <li><a href="#home" class="active">HOME</a></li>
+                <li><a href="#project">PROJECT</a></li>
+                <li><a href="#dashboard-embed">DASHBOARD</a></li>
+                <li><a href="#story-preview">STORY</a></li>
+                <li><a href="#instructions">GUIDE</a></li>
+                <li><a href="#dimensions">INSIGHTS</a></li>
+                <li><a href="#contact" class="btn-contact-nav">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section" id="home">
+        <div class="hero-backdrop-graphic"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-live-badge">
+                    <span class="live-dot"></span>
+                    <span>Live Race Analytics Platform</span>
+                </div>
+                <h1 class="hero-title">
+                    FORMULA <span class="num-one">1</span>
+                </h1>
+                <div class="hero-subtitle">
+                    RACE INTELLIGENCE DASHBOARD
+                </div>
+                <p class="hero-description">
+                    Deep-dive analytics into Formula 1 Championship data — from driver performance metrics and team strategy to circuit analysis and historical championship trends. Powered by Tableau visualization intelligence.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#dashboard-embed" class="btn-primary-f1">
+                        <i class="fa-solid fa-chart-simple"></i> View Dashboard
+                    </a>
+                    <a href="#story-preview" class="btn-secondary-f1">
+                        <i class="fa-solid fa-play"></i> Explore Story
+                    </a>
+                </div>
+                <div class="hero-stats-bar">
+                    <div class="hero-stat-item">
+                        <span class="stat-number">75+</span>
+                        <span class="stat-label">SEASONS ANALYZED</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="stat-number">1K+</span>
+                        <span class="stat-label">RACES COVERED</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="stat-number">20</span>
+                        <span class="stat-label">ACTIVE DRIVERS</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="stat-number">10</span>
+                        <span class="stat-label">CONSTRUCTORS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#kpis" class="hero-scroll-indicator">
+            <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+            <span>Scroll</span>
+        </a>
+    </section>
+
+    <!-- KPI CARDS -->
+    <section class="kpi-section" id="kpis">
+        <div class="container">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <i class="fa-solid fa-trophy kpi-icon"></i>
+                    <div class="kpi-value counter-animate" data-target="897" data-suffix="+">897+</div>
+                    <div class="kpi-label">TOTAL RACE ENTRIES</div>
+                </div>
+                <div class="kpi-card">
+                    <i class="fa-solid fa-flag-checkered kpi-icon"></i>
+                    <div class="kpi-value counter-animate" data-target="33">33</div>
+                    <div class="kpi-label">CHAMPIONSHIP TITLES</div>
+                </div>
+                <div class="kpi-card">
+                    <i class="fa-solid fa-gauge-high kpi-icon"></i>
+                    <div class="kpi-value counter-animate" data-target="372">372</div>
+                    <div class="kpi-label">KM/H TOP SPEED</div>
+                </div>
+                <div class="kpi-card">
+                    <i class="fa-solid fa-chart-line kpi-icon"></i>
+                    <div class="kpi-value counter-animate" data-target="15" data-suffix="+">15+</div>
+                    <div class="kpi-label">KPIS VISUALIZED</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT OVERVIEW -->
+    <section class="overview-section" id="project">
+        <div class="container">
+            <div class="overview-grid">
+                <div class="track-card">
+                    <div class="track-canvas-wrapper" id="circuit-container"></div>
+                    <div class="track-tags-group">
+                        <span class="tag-pill">DATA ANALYTICS</span>
+                        <span class="tag-pill gold">TABLEAU</span>
+                        <span class="tag-pill">RACE STRATEGY</span>
+                        <span class="tag-pill">VISUALIZATION</span>
+                        <span class="tag-pill">CHAMPIONSHIP</span>
+                        <span class="tag-pill">F1 DATASET</span>
+                    </div>
+                </div>
+                <div class="overview-content-pane">
+                    <span class="section-tag-red">PROJECT OVERVIEW</span>
+                    <h2 class="overview-heading">Transforming F1 Data Into Championship Intelligence</h2>
+                    <p class="overview-lead-p">
+                        This project leverages the rich historical and real-time data from Formula 1 to build a comprehensive analytics platform. Using Tableau's powerful visualization engine, we transform raw race telemetry into actionable insights for fans, analysts, and strategists.
+                    </p>
+                    <p class="overview-sub-p">
+                        From pole position predictions to championship probability models, this dashboard covers every dimension of modern Formula 1 racing — all in an interactive, explorable format.
+                    </p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-globe"></i></div>
+                            <div class="feature-text">
+                                <h4>Global Race Overview</h4>
+                                <p>Circuit-by-circuit analysis across all 24 Grand Prix locations with performance comparisons</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-user-astronaut"></i></div>
+                            <div class="feature-text">
+                                <h4>Driver Performance Metrics</h4>
+                                <p>Lap times, qualifying pace, race pace, overtaking data and consistency analysis</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-car"></i></div>
+                            <div class="feature-text">
+                                <h4>Constructor Championship Battle</h4>
+                                <p>Team-by-team points progression, reliability data, and strategic decisions</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-stopwatch-20"></i></div>
+                            <div class="feature-text">
+                                <h4>Pit Stop Strategy Analysis</h4>
+                                <p>Tire degradation models, undercut/overcut opportunities, and optimal strategy windows</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-box"><i class="fa-solid fa-trophy"></i></div>
+                            <div class="feature-text">
+                                <h4>Championship Success Prediction</h4>
+                                <p>Historical patterns and statistical models to forecast championship outcomes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#dashboard-embed" class="btn-primary-f1">
+                            <i class="fa-solid fa-bolt"></i> Explore Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTELLIGENCE DIMENSIONS -->
+    <section class="dimensions-section" id="dimensions">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label-center">WHAT WE ANALYZE</div>
+                <h2 class="section-title-large">Intelligence <span class="text-red">Dimensions</span></h2>
+                <p class="section-subtitle-center">Six key analytical dimensions powering our Formula 1 Race Intelligence platform</p>
+                <div class="red-diamond-divider"><span></span></div>
+            </div>
+
+            <!-- Ticker -->
+            <div class="ticker-container">
+                <div class="ticker-badge">LIVE DATA</div>
+                <div class="ticker-track">
+                    <div class="ticker-content">
+                        Verstappen leads Championship by 47 points &bull; Monaco GP: Fastest Lap 1:12.492 &bull; Ferrari leads avg pit stop speed in 2024 &bull; Red Bull Racing leads Constructor Championship &bull; Norris sets fastest race lap in Silverstone &bull;
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 Cards -->
+            <div class="dimensions-grid">
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-map"></i></div>
+                    <h3 class="dim-title">Circuit Analysis</h3>
+                    <p class="dim-desc">Track-by-track performance data from Monaco's tight streets to Monza's high-speed temple — every circuit has its own data fingerprint.</p>
+                    <a href="#dashboard-embed" class="dim-badge-link">&rarr; 24 CIRCUITS MAPPED</a>
+                </div>
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-stopwatch"></i></div>
+                    <h3 class="dim-title">Lap Time Breakdown</h3>
+                    <p class="dim-desc">Sector-by-sector time analysis for every driver across every session — qualifying, practice and race — at millisecond precision.</p>
+                    <a href="#dashboard-embed" class="dim-badge-link">&rarr; MILLISECOND PRECISION</a>
+                </div>
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-circle-notch"></i></div>
+                    <h3 class="dim-title">Tire Strategy</h3>
+                    <p class="dim-desc">Soft, Medium, Hard, Inter, Wet — each compound tells a story. Analyze stint lengths, degradation rates, and optimal tire strategies.</p>
+                    <a href="#dashboard-embed" class="dim-badge-link">&rarr; 5 COMPOUND TYPES</a>
+                </div>
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-users"></i></div>
+                    <h3 class="dim-title">Driver Head-to-Head</h3>
+                    <p class="dim-desc">Compare teammates and rivals across qualifying deltas, race pace, podiums, DNFs, and championship points throughout a season.</p>
+                    <a href="#dashboard-embed" class="dim-badge-link">&rarr; 20 DRIVERS COMPARED</a>
+                </div>
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3 class="dim-title">Points Progression</h3>
+                    <p class="dim-desc">Watch the championship unfold race-by-race with animated trajectories. Identify turning points that decided seasons in the final laps.</p>
+                    <a href="#dashboard-embed" class="dim-badge-link">&rarr; SEASON-LONG VIEW</a>
+                </div>
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+                    <h3 class="dim-title">Weather & Safety Cars</h3>
+                    <p class="dim-desc">How weather conditions, Virtual Safety Cars, and full SC deployments affected race outcomes and championship battles across seasons.</p>
+                    <a href="#dashboard-embed" class="dim-badge-link">&rarr; ALL SC INCIDENTS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD EMBED -->
+    <section class="dashboard-preview-section" id="dashboard-embed">
+        <div class="container">
+            <div class="section-header-center">
+                <h2 class="section-title-large">Race Intelligence <span class="text-red">Dashboard</span></h2>
+                <p class="section-subtitle-center">Explore the full Formula 1 Race Intelligence Dashboard — interactive charts, filters, and deep-dive analytics built in Tableau Public.</p>
+                <div class="red-diamond-divider"><span></span></div>
+            </div>
+
+            <div class="window-mockup-frame">
+                <div class="window-mockup-header">
+                    <div class="window-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <div class="window-mockup-title">F1 RACE INTELLIGENCE DASHBOARD</div>
+                    <div class="window-badge-tableau">TABLEAU PUBLIC</div>
+                </div>
+
+                <div class="tableau-view-toolbar">
+                    <div class="tableau-tabs-group">
+                        <button class="viz-tab-btn active" id="tab-btn-live">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Tableau Live Embed
+                        </button>
+                        <button class="viz-tab-btn" id="tab-btn-mock">
+                            <i class="fa-solid fa-chart-pie"></i> Interactive Telemetry View
+                        </button>
+                    </div>
+                    <div class="tableau-actions-group">
+                        <button class="btn-viz-action" id="btn-toggle-fullscreen">
+                            <i class="fa-solid fa-expand"></i> Fullscreen
+                        </button>
+                        <button class="btn-viz-action" onclick="document.getElementById('config-modal').classList.add('active');">
+                            <i class="fa-solid fa-gear text-red"></i> Connect URL
+                        </button>
+                    </div>
+                </div>
+
+                <div class="window-mockup-body" id="tableau-embed-frame">
+                    <div id="view-container-live" class="tableau-embed-wrapper">
+                        <tableau-viz 
+                            id="tableau-dashboard-viz"
+                            src="https://public.tableau.com/views/Formula1DataVisualisation/F1Dashboard"
+                            toolbar="bottom"
+                            hide-tabs="true">
+                        </tableau-viz>
+                    </div>
+
+                    <div id="view-container-mock" class="f1-interactive-mock-viz" style="display: none;">
+                        <div class="mock-viz-header-bar">
+                            <div class="mock-banner-row">
+                                <div class="mock-logo-title">
+                                    <span class="f1-logo-badge">F1</span>
+                                    <span>FORMULA 1 RACE INTELLIGENCE DASHBOARD</span>
+                                </div>
+                            </div>
+                            <div class="mock-kpis-and-filters">
+                                <div class="mock-kpi-cell">
+                                    <div class="cell-label">Competing Teams</div>
+                                    <div class="cell-value" id="mock-stat-teams">10</div>
+                                </div>
+                                <div class="mock-kpi-cell">
+                                    <div class="cell-label">Seasons in Play</div>
+                                    <div class="cell-value">17</div>
+                                </div>
+                                <div class="mock-kpi-cell">
+                                    <div class="cell-label">Race Outcomes Logged</div>
+                                    <div class="cell-value" id="mock-stat-races">6,464</div>
+                                </div>
+                                <div class="mock-kpi-cell">
+                                    <div class="cell-label">Circuits Showcased</div>
+                                    <div class="cell-value">29</div>
+                                </div>
+                                <div class="mock-filter-cell">
+                                    <label>Dnf Reason</label>
+                                    <select id="mock-filter-dnf" class="mock-filter-select">
+                                        <option value="All">(All)</option>
+                                        <option value="Mechanical">Mechanical Failure</option>
+                                        <option value="Collision">Collision</option>
+                                    </select>
+                                </div>
+                                <div class="mock-filter-cell">
+                                    <label>Year of Race Date</label>
+                                    <select id="mock-filter-year" class="mock-filter-select">
+                                        <option value="All">(All)</option>
+                                        <option value="2024">2024</option>
+                                    </select>
+                                </div>
+                                <div class="mock-filter-cell">
+                                    <label>Top N Parameter</label>
+                                    <input type="number" id="mock-param-topn" class="mock-filter-select" value="10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mock-charts-quad">
+                            <div class="mock-chart-card">
+                                <div class="mock-chart-title">Global Driver Distribution Across Grand Prix Nations</div>
+                                <div class="chart-svg-container">
+                                    <svg viewBox="0 0 540 240" style="width: 100%; height: 100%; background: #0c0e14; border-radius: 4px;">
+                                        <circle cx="160" cy="70" r="14" fill="rgba(59, 130, 246, 0.4)" stroke="#60a5fa" />
+                                        <text x="160" y="68" fill="#fff" font-family="'Rajdhani', sans-serif" font-size="9" text-anchor="middle">Canada</text>
+                                        <text x="160" y="79" fill="#93c5fd" font-family="'Rajdhani', sans-serif" font-size="9" font-weight="700" text-anchor="middle">308</text>
+
+                                        <circle cx="150" cy="115" r="13" fill="rgba(59, 130, 246, 0.4)" stroke="#60a5fa" />
+                                        <text x="150" y="113" fill="#fff" font-family="'Rajdhani', sans-serif" font-size="9" text-anchor="middle">Mexico</text>
+                                        <text x="150" y="124" fill="#93c5fd" font-family="'Rajdhani', sans-serif" font-size="9" font-weight="700" text-anchor="middle">160</text>
+
+                                        <circle cx="260" cy="65" r="12" fill="rgba(59, 130, 246, 0.4)" stroke="#60a5fa" />
+                                        <text x="260" y="63" fill="#fff" font-family="'Rajdhani', sans-serif" font-size="8" text-anchor="middle">Netherlands</text>
+                                        <text x="260" y="73" fill="#93c5fd" font-family="'Rajdhani', sans-serif" font-size="9" font-weight="700" text-anchor="middle">140</text>
+
+                                        <circle cx="430" cy="80" r="14" fill="rgba(59, 130, 246, 0.4)" stroke="#60a5fa" />
+                                        <text x="430" y="78" fill="#fff" font-family="'Rajdhani', sans-serif" font-size="9" text-anchor="middle">Japan</text>
+                                        <text x="430" y="89" fill="#93c5fd" font-family="'Rajdhani', sans-serif" font-size="9" font-weight="700" text-anchor="middle">140</text>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="mock-chart-card">
+                                <div class="mock-chart-title">Driver Performance Leaderboard</div>
+                                <div class="bar-chart-bars">
+                                    <div class="driver-bar-col">
+                                        <div class="driver-bar-val">31,147</div>
+                                        <div class="driver-bar-fill" style="height: 180px; background: #eab308;"></div>
+                                        <div class="driver-bar-name">Lewis</div>
+                                    </div>
+                                    <div class="driver-bar-col">
+                                        <div class="driver-bar-val">31,126</div>
+                                        <div class="driver-bar-fill" style="height: 178px; background: #a855f7;"></div>
+                                        <div class="driver-bar-name">Max</div>
+                                    </div>
+                                    <div class="driver-bar-col">
+                                        <div class="driver-bar-val">27,673</div>
+                                        <div class="driver-bar-fill" style="height: 155px; background: #f97316;"></div>
+                                        <div class="driver-bar-name">Charles</div>
+                                    </div>
+                                    <div class="driver-bar-col">
+                                        <div class="driver-bar-val">26,400</div>
+                                        <div class="driver-bar-fill" style="height: 145px; background: #22c55e;"></div>
+                                        <div class="driver-bar-name">Lando</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTRUCTIONS SECTION -->
+    <section class="overview-section" id="instructions">
+        <div class="container">
+            <div class="section-header-center">
+                <span class="section-label-center">INTEGRATION GUIDE</span>
+                <h2 class="section-title-large">How to Connect <span class="text-red">Tableau Dashboard & Story</span></h2>
+                <div class="red-diamond-divider"><span></span></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <h3 class="dim-title">1. Publish to Tableau Public</h3>
+                    <p class="dim-desc">Open your workbook in Tableau and choose <code>Server &rarr; Tableau Public &rarr; Save to Tableau Public As...</code></p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-link"></i></div>
+                    <h3 class="dim-title">2. Copy The Embed Link</h3>
+                    <p class="dim-desc">Click the Share button on Tableau Public and copy the clean Link URL for both your Dashboard and Story.</p>
+                </div>
+                <div class="dimension-card">
+                    <div class="dim-icon-box"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="dim-title">3. Connect via Flask</h3>
+                    <p class="dim-desc">Update <code>config.py</code> or click the floating <code>Connect Tableau</code> gear on this page to view it live.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING GEAR LAUNCHER -->
+    <button class="btn-config-launcher" id="btn-open-config-modal">
+        <i class="fa-solid fa-gear"></i> Connect Tableau
+    </button>
+    <button class="btn-floating-top" id="btn-scroll-top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="config-modal">
+        <div class="config-modal-box">
+            <div class="modal-header">
+                <div class="modal-title">Connect Tableau Dashboard & Story</div>
+                <button class="btn-close-modal" id="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group-f1">
+                    <label>Tableau Dashboard URL</label>
+                    <input type="url" id="input-dashboard-url" class="form-control-f1" value="https://public.tableau.com/views/Formula1DataVisualisation/F1Dashboard">
+                </div>
+                <div class="form-group-f1">
+                    <label>Tableau Story URL</label>
+                    <input type="url" id="input-story-url" class="form-control-f1" value="https://public.tableau.com/views/Formula1HistoryStory/F1Story">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary-f1" id="btn-cancel-modal">Cancel</button>
+                <button class="btn-primary-f1" id="btn-save-tableau-urls">Apply & Connect</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/circuit.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/tableau-config.js"></script>
+</body>
+</html>

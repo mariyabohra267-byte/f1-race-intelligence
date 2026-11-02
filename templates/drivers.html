@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Driver Telemetry & Grid Profiles | Formula 1 Race Intelligence{% endblock %}
+
+{% block content %}
+<div style="padding-top: 100px; padding-bottom: 80px; background: #08090b; min-height: 100vh;">
+    <div class="container">
+        
+        <!-- Header -->
+        <div style="margin-bottom: 36px; text-align: center;">
+            <div style="font-family: var(--font-f1-tech); font-size: 13px; color: var(--f1-red); font-weight: 700; letter-spacing: 2px;">
+                F1 GRID INTELLIGENCE
+            </div>
+            <h1 style="font-family: var(--font-f1-title); font-size: 36px; font-weight: 700; color: #fff; margin-top: 6px;">
+                Driver <span class="text-red">Telemetry & Profiles</span>
+            </h1>
+            <p style="font-size: 15px; color: #9ca3af; max-width: 650px; margin: 10px auto 0 auto;">
+                Head-to-head qualifying deltas, tire stint durability, and championship points analyzed directly from Tableau models.
+            </p>
+        </div>
+
+        <!-- Driver Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;">
+            {% for driver in drivers %}
+            <div class="dimension-card" style="border-top: 3px solid {{ driver.color }};">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <span style="font-family: var(--font-f1-title); font-size: 26px; font-weight: 900; color: rgba(255, 255, 255, 0.2);">
+                        #{{ driver.number }}
+                    </span>
+                    <span class="tag-pill" style="border-color: {{ driver.color }}; color: #fff; font-size: 10px;">
+                        {{ driver.team }}
+                    </span>
+                </div>
+
+                <h3 style="font-family: var(--font-f1-tech); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px;">
+                    {{ driver.name }}
+                </h3>
+
+                <!-- Stats Grid -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 16px 0; background: rgba(0, 0, 0, 0.3); padding: 12px; border-radius: 6px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 10px; color: #71717a; font-family: var(--font-f1-tech);">POINTS</div>
+                        <div style="font-family: var(--font-f1-title); font-size: 18px; font-weight: 700; color: #fff;">{{ driver.points }}</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 10px; color: #71717a; font-family: var(--font-f1-tech);">WINS</div>
+                        <div style="font-family: var(--font-f1-title); font-size: 18px; font-weight: 700; color: var(--f1-red);">{{ driver.wins }}</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 10px; color: #71717a; font-family: var(--font-f1-tech);">PODIUMS</div>
+                        <div style="font-family: var(--font-f1-title); font-size: 18px; font-weight: 700; color: #f59e0b;">{{ driver.podiums }}</div>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('dashboard') }}" class="dim-badge-link" style="margin-top: 8px;">
+                    View Driver Tableau Telemetry &rarr;
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

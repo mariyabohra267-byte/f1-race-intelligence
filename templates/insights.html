@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Race Strategy Insights & Analytics | Formula 1 Platform{% endblock %}
+
+{% block content %}
+<div style="padding-top: 100px; padding-bottom: 80px; background: #08090b; min-height: 100vh;">
+    <div class="container">
+        
+        <!-- Header -->
+        <div style="margin-bottom: 36px; text-align: center;">
+            <div style="font-family: var(--font-f1-tech); font-size: 13px; color: var(--f1-red); font-weight: 700; letter-spacing: 2px;">
+                STRATEGIC MODELING
+            </div>
+            <h1 style="font-family: var(--font-f1-title); font-size: 36px; font-weight: 700; color: #fff; margin-top: 6px;">
+                Race Strategy <span class="text-red">& Pit Stop</span> Insights
+            </h1>
+            <p style="font-size: 15px; color: #9ca3af; max-width: 650px; margin: 10px auto 0 auto;">
+                Predictive pit window models, tire thermal degradation analysis, and undercut probabilities computed from multi-season telemetry.
+            </p>
+        </div>
+
+        <!-- 3 Insight Columns -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px;">
+            <div class="track-card">
+                <span class="section-tag-red">TIRE DEGRADATION</span>
+                <h3 style="font-family: var(--font-f1-tech); font-size: 20px; color: #fff; margin: 8px 0 12px 0;">
+                    Compound Crossover Windows
+                </h3>
+                <p style="font-size: 14px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px;">
+                    Medium (C3) to Hard (C2) crossover occurs on average at Lap 18 at high-energy circuits like Silverstone and Barcelona, yielding a 1.2s lap time delta when executing an early undercut.
+                </p>
+                <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 4px; font-size: 13px; color: #f59e0b;">
+                    <strong>Optimal Strategy:</strong> 1-Stop (Medium &rarr; Hard)
+                </div>
+            </div>
+
+            <div class="track-card">
+                <span class="section-tag-red">PIT CREW PERFORMANCE</span>
+                <h3 style="font-family: var(--font-f1-tech); font-size: 20px; color: #fff; margin: 8px 0 12px 0;">
+                    Stationary Pit Stop Speeds
+                </h3>
+                <p style="font-size: 14px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px;">
+                    Red Bull and Ferrari lead the 2024 DHL Fastest Pit Stop Award with average stationary wheel swap times of 2.14 seconds, shaving vital track position during double-stack safety car phases.
+                </p>
+                <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 4px; font-size: 13px; color: #10b981;">
+                    <strong>Season Record:</strong> 1.98s Stationary Swap
+                </div>
+            </div>
+
+            <div class="track-card">
+                <span class="section-tag-red">SAFETY CAR DEPLOYMENT</span>
+                <h3 style="font-family: var(--font-f1-tech); font-size: 20px; color: #fff; margin: 8px 0 12px 0;">
+                    Neutralization Probability
+                </h3>
+                <p style="font-size: 14px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px;">
+                    Street circuits (Singapore, Baku, Jeddah) carry an 84% historical likelihood of full safety car deployment, shifting baseline strategy from single-stop degradation conservation to reactive sprint stints.
+                </p>
+                <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 4px; font-size: 13px; color: #ef4444;">
+                    <strong>SC Delta Advantage:</strong> -11.4s Pit Loss
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA to Dashboard -->
+        <div style="text-align: center; background: rgba(18, 20, 26, 0.8); border: 1px solid var(--border-subtle); padding: 40px; border-radius: var(--radius-md);">
+            <h3 style="font-family: var(--font-f1-title); font-size: 24px; color: #fff; margin-bottom: 10px;">
+                Dive Into The Live Tableau Interactive Model
+            </h3>
+            <p style="color: #9ca3af; font-size: 14px; max-width: 600px; margin: 0 auto 24px auto;">
+                Explore all 24 Grand Prix tracks, driver telemetry overlays, and pit stop timelines in the embedded Tableau view.
+            </p>
+            <a href="{{ url_for('dashboard') }}" class="btn-primary-f1">
+                <i class="fa-solid fa-chart-line"></i> Open Interactive Dashboard
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_name }} | Live Race Analytics & Tableau Platform{% endblock %}</title>
+    <meta name="description" content="Formula 1 Race Intelligence - Interactive Tableau dashboards and stories embedded in Flask for race analysts, strategists, and fans.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tableau-embed.css') }}">
+
+    <!-- Tableau Embedding API v3 (Modern Web Component Standard) -->
+    <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <!-- =================================================================
+         TOP NAVIGATION BAR (Screenshot 1)
+         ================================================================= -->
+    <nav class="f1-navbar">
+        <div class="container nav-container">
+            <!-- Brand -->
+            <a href="{{ url_for('index') }}" class="f1-brand">
+                <span class="f1-logo-badge">F1</span>
+                <span class="f1-brand-text">RACE INTELLIGENCE</span>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="nav-toggle-btn" id="mobile-nav-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="f1-nav-links">
+                <li><a href="{{ url_for('index') }}#home" class="{% if request.endpoint == 'index' %}active{% endif %}">HOME</a></li>
+                <li><a href="{{ url_for('index') }}#project">PROJECT</a></li>
+                <li><a href="{{ url_for('dashboard') }}" class="{% if request.endpoint == 'dashboard' %}active{% endif %}">DASHBOARD</a></li>
+                <li><a href="{{ url_for('story') }}" class="{% if request.endpoint == 'story' %}active{% endif %}">STORY</a></li>
+                <li><a href="{{ url_for('instructions') }}" class="{% if request.endpoint == 'instructions' %}active{% endif %}">GUIDE</a></li>
+                <li><a href="{{ url_for('insights') }}" class="{% if request.endpoint == 'insights' %}active{% endif %}">INSIGHTS</a></li>
+                <li><a href="{{ url_for('drivers') }}" class="{% if request.endpoint == 'drivers' %}active{% endif %}">DRIVERS</a></li>
+                <li><a href="{{ url_for('index') }}#contact" class="btn-contact-nav">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Dynamic Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- =================================================================
+         FOOTER
+         ================================================================= -->
+    <footer class="f1-footer" id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="f1-brand" style="margin-bottom: 12px;">
+                        <span class="f1-logo-badge">F1</span>
+                        <span class="f1-brand-text">RACE INTELLIGENCE</span>
+                    </div>
+                    <p>Formula 1 telemetry and race analytics platform integrating Tableau Public visualizations with Flask backend services for fans, journalists, and race strategists.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Navigation</h5>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('index') }}">Home Overview</a></li>
+                        <li><a href="{{ url_for('dashboard') }}">Tableau Dashboard</a></li>
+                        <li><a href="{{ url_for('story') }}">Tableau Story</a></li>
+                        <li><a href="{{ url_for('instructions') }}">Embedding Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Intelligence</h5>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('drivers') }}">Driver Telemetry</a></li>
+                        <li><a href="{{ url_for('insights') }}">Pit Strategy & Tires</a></li>
+                        <li><a href="{{ url_for('index') }}#dimensions">6 Analytical Dimensions</a></li>
+                        <li><a href="{{ url_for('index') }}#project">Monza Circuit Map</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect Tableau</h5>
+                    <p style="font-size: 13px; color: #8b929e; margin-bottom: 14px;">Connect your custom Tableau Public workbook to this web application instantly.</p>
+                    <button class="btn-primary-f1" style="padding: 8px 18px; font-size: 12px;" onclick="document.getElementById('config-modal').classList.add('active');">
+                        <i class="fa-solid fa-link"></i> Connect Workbook
+                    </button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Formula 1 Race Intelligence. Built with Flask & Tableau Public.</div>
+                <div>Designed for real-time race telemetry and historical analytics.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Tableau URL Config Launcher -->
+    <button class="btn-config-launcher" id="btn-open-config-modal" title="Connect Your Tableau URLs">
+        <i class="fa-solid fa-gear"></i> Connect Tableau
+    </button>
+
+    <!-- Floating Back to Top Button (Screenshot 3) -->
+    <button class="btn-floating-top" id="btn-scroll-top" title="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- =================================================================
+         MODAL: CONNECT CUSTOM TABLEAU WORKBOOK & STORY
+         ================================================================= -->
+    <div class="modal-overlay" id="config-modal">
+        <div class="config-modal-box">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span class="f1-logo-badge" style="font-size: 12px; padding: 2px 6px;">F1</span>
+                    Connect Tableau Dashboard & Story
+                </div>
+                <button class="btn-close-modal" id="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 13px; color: #9ca3af; margin-bottom: 20px;">
+                    Paste your Tableau Public URLs below to connect your own interactive dashboard and story views directly into this Flask web app.
+                </p>
+
+                <div class="form-group-f1">
+                    <label for="input-dashboard-url">
+                        <i class="fa-solid fa-chart-column text-red"></i> Tableau Dashboard Public URL
+                    </label>
+                    <input type="url" id="input-dashboard-url" class="form-control-f1" 
+                           value="{{ tableau_dashboard_url }}" 
+                           placeholder="https://public.tableau.com/views/YourWorkbook/YourDashboard">
+                    <div class="form-hint">Example: https://public.tableau.com/views/Formula1DataVisualisation/F1Dashboard</div>
+                </div>
+
+                <div class="form-group-f1">
+                    <label for="input-story-url">
+                        <i class="fa-solid fa-book-open text-red"></i> Tableau Story Public URL
+                    </label>
+                    <input type="url" id="input-story-url" class="form-control-f1" 
+                           value="{{ tableau_story_url }}" 
+                           placeholder="https://public.tableau.com/views/YourWorkbook/YourStory">
+                    <div class="form-hint">Example: https://public.tableau.com/views/Formula1HistoryStory/F1Story</div>
+                </div>
+
+                <div style="background: rgba(225, 6, 0, 0.08); border-left: 3px solid #e10600; padding: 10px 14px; border-radius: 4px; font-size: 12px; color: #d1d5db;">
+                    <strong>Tip:</strong> You can also set these permanently in <code>config.py</code> or as environment variables (<code>TABLEAU_DASHBOARD_URL</code> and <code>TABLEAU_STORY_URL</code>).
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary-f1" id="btn-reset-defaults" style="padding: 10px 18px; font-size: 13px;">Reset Defaults</button>
+                <button type="button" class="btn-secondary-f1" id="btn-cancel-modal" style="padding: 10px 18px; font-size: 13px;">Cancel</button>
+                <button type="button" class="btn-primary-f1" id="btn-save-tableau-urls" style="padding: 10px 22px; font-size: 13px;">
+                    <i class="fa-solid fa-bolt"></i> Apply & Connect
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tableau-config.js') }}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

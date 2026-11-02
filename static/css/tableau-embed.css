@@ -1,0 +1,139 @@
+/* ==========================================================================
+   TABLEAU EMBEDDING STYLES & RESPONSIVE CONTAINERS
+   ========================================================================== */
+
+.tableau-embed-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+  background: #090a0e;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+}
+
+/* Tableau Embedding API v3 custom element */
+tableau-viz {
+  width: 100% !important;
+  height: 800px !important;
+  display: block;
+  border: none;
+}
+
+/* Fallback & Classic embed container */
+.tableauPlaceholder {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+}
+
+.tableauPlaceholder iframe,
+.tableauPlaceholder object {
+  width: 100% !important;
+  border: none !important;
+}
+
+/* Loading State */
+.tableau-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #0c0e14;
+  z-index: 10;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.tableau-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.spinner-f1 {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--f1-red);
+  border-radius: 50%;
+  animation: f1Spin 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+@keyframes f1Spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-family: var(--font-f1-tech);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-silver);
+}
+
+/* Fullscreen Mode */
+.tableau-embed-wrapper.is-fullscreen {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000000 !important;
+}
+
+.tableau-embed-wrapper.is-fullscreen tableau-viz {
+  height: 100vh !important;
+}
+
+/* Story Point Navigation Bar for Story Page */
+.story-nav-deck {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #11131a;
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+
+.story-step-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-f1-tech);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #9ca3af;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.story-step-pill:hover,
+.story-step-pill.active {
+  background: var(--f1-red);
+  border-color: var(--f1-red);
+  color: #ffffff;
+  box-shadow: 0 0 14px var(--f1-red-glow);
+}
+
+.story-step-pill .step-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
